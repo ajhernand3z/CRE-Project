@@ -63,11 +63,14 @@ in a browser (the site sits behind a bot filter), then:
 python -m app.ingest.tcad --file /path/to/certified_export.zip
 ```
 
-The parser sniffs the delimiter and resolves columns through an alias map
-(`FIELD_ALIASES` in `app/ingest/tcad.py`) because TCAD's layout changes
-between vintages — if a year renames a column, add the new name to the
-alias list. Only commercial state-category codes (B1/B2/F1/F2) are
-ingested.
+The export is a zip of fixed-width files in the PACS "Appraisal Export"
+layout (8.0.33 as of 2026). The loader reads the property table
+(`APPRAISAL_INFO`, situs/values/state codes) and the improvement details
+(building square footage as the sum of floor-type segments, plus year
+built) in a streaming three-pass ingest — the offsets in
+`app/ingest/tcad.py` were verified against actual 2026 export records.
+Only commercial state-category codes (B1/B2/F1/F2) are ingested; a
+delimited-file parser remains as a fallback for single-file exports.
 
 **Regrid fallback**: with a Regrid API token:
 
