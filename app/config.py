@@ -28,7 +28,7 @@ REGRID_API_BASE = "https://app.regrid.com/api/v2"
 
 # Anthropic API for the narrative layer.
 ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
-ANTHROPIC_MODEL = os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-5")
+ANTHROPIC_MODEL = os.environ.get("ANTHROPIC_MODEL", "claude-opus-4-8")
 
 # --- Comp search parameters --------------------------------------------------
 
