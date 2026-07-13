@@ -1,0 +1,6 @@
+data/comps.db
+__pycache__/
+*.pyc
+.pytest_cache/
+data/tcad_export.zip
+.env
