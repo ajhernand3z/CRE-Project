@@ -153,6 +153,18 @@ data/seed_comps.json        # demo dataset (synthetic prices — see note above)
 tests/                      # 26 tests incl. hand-verified adjustment figures
 ```
 
+## Deploying (free hosting on Render)
+
+The repo includes `render.yaml`, so [Render](https://render.com) can deploy
+it as a Blueprint: sign in with GitHub → New → Blueprint → pick this repo →
+Apply. Set `ANTHROPIC_API_KEY` in the service's Environment tab to enable
+the AI narrative (and set a monthly spend limit on your Anthropic account,
+since the public form triggers API calls). Fresh deploys load the demo
+dataset; to publish real TCAD data, build `data/comps.db` locally with the
+ingest script and commit it with `git add -f data/comps.db`. Note the free
+tier sleeps after inactivity — the first visit after a quiet period takes
+~30 seconds to wake.
+
 ## Known limitations / next steps
 
 - Submarkets are ZIP-code groupings (`app/config.py`) — coarse but
