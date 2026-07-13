@@ -33,6 +33,9 @@ place for that.
 
 ## Quick start
 
+Requires **Python 3.10+** (macOS ships an older 3.9 — install the current
+version from [python.org/downloads](https://python.org/downloads) first).
+
 ```bash
 pip install -r requirements.txt
 python -m app.ingest.seed          # load the demo dataset into data/comps.db
