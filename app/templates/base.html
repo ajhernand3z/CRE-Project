@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}CRE Comp Analysis{% endblock %}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header>
+    <a href="/" class="brand">Travis County CRE Comp Analysis</a>
+    <span class="tagline">sales-comparison underwriting with AI commentary</span>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  <footer>
+    Public-data demo — Texas is a non-disclosure state, so sale prices are not
+    public record; where no sale is available the analysis falls back to the
+    appraisal district's market value. Cap rates are pro forma estimates.
+  </footer>
+</body>
+</html>

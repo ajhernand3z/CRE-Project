@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+  <h1>Run a comp analysis</h1>
+  <p class="muted">
+    Enter a subject property by address or parcel ID. If it's in the local
+    database ({{ total }} parcels:
+    {%- for t, c in inventory %} {{ c }} {{ t }}{{ "," if not loop.last }}{% endfor %}),
+    its characteristics fill in automatically — anything you enter below wins.
+  </p>
+
+  {% if error %}<div class="error">{{ error }}</div>{% endif %}
+
+  <form method="post" action="/analyze">
+    <label>Address or parcel ID <span class="req">required</span>
+      <input name="query" required placeholder="e.g. Chicon St or 412291"
+             value="{{ form.get('query', '') }}">
+    </label>
+
+    <div class="grid">
+      <label>Property type
+        <select name="property_type">
+          <option value="">auto-detect from match</option>
+          {% for t in property_types %}
+          <option value="{{ t }}" {{ "selected" if form.get('property_type') == t }}>{{ t }}</option>
+          {% endfor %}
+        </select>
+      </label>
+      <label>Building SF
+        <input name="building_sqft" inputmode="numeric" placeholder="e.g. 20,000"
+               value="{{ form.get('building_sqft', '') }}">
+      </label>
+      <label>Year built
+        <input name="year_built" inputmode="numeric" placeholder="e.g. 2008"
+               value="{{ form.get('year_built', '') }}">
+      </label>
+      <label>Asking price / est. value
+        <input name="asking_price" inputmode="numeric" placeholder="optional"
+               value="{{ form.get('asking_price', '') }}">
+      </label>
+      <label>ZIP (if not in database)
+        <input name="zip_code" inputmode="numeric" placeholder="e.g. 78702"
+               value="{{ form.get('zip_code', '') }}">
+      </label>
+    </div>
+
+    <button type="submit">Find comps &amp; underwrite</button>
+  </form>
+</section>
+{% endblock %}
